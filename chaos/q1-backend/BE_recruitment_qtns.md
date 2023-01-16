@@ -14,11 +14,11 @@
         }).join().unwrap();
     ```
 
-    A:
+    A: Refcell allows data mutation when there are existing immutable references to that data, Refcell basically turns the compiler statically checked borrow rules into rules checked at runtime. There is no thread synchronization performed, so multi-thread access will lead to data race. But since it doesn't implement the Sync trait, it doesn't even pass the compiler check for being passed into the `std::thread::spawn()` function. 
 
 2.  Shortly discuss, when modelling a response to a HTTP request in Rust, would you prefer to use `Option` or `Result`?
 
-    A:
+    A: `Option` can contain either `Some` and contains a value or `None`. In the case of HTTP response, we can't just return a response modelled with `None`, but instead we need to represent multiple possible error states(404, 500, or etc). This can be achieved with `Result`, as it represents `Ok`(200) or `Err`(some error code). 
 
 3.  In `student.psv` there are some fake student datas from UNSW CSE (no doxx!). In each row, the fields from left to right are
 
